@@ -11,14 +11,19 @@ var lys = 0;
 var varme = 0;
 
 // Bridge ip-adresse. Find den fx i hue app'en
-var url = '10.0.1.2';
-// Fælles brugernavn
-var username = 'C2fr-2XtwFq3Z7G3Xk4XftfEq48pY0oxXaYMJcU4';
+var url = '10.0.248.127';
+// Hent dit brugernavn - find det ved at følge installationsguiden her: 
+// https://developers.meethue.com/develop/get-started-2/#
+
+var username = '';
+
 //Slidere
 var dimmer, temper;
+
 //Den pære du vil kontrollere
 var lightNumber = 4;
-//Den osc besked du vil modtage
+
+//Den osc besked du vil modtage fra Wekinator
 var osc_address = "/wek/outputs";
 
 function setup() {
@@ -35,7 +40,7 @@ function setup() {
     dimmer.position(10, 10); // position it
     dimmer.mouseReleased(changeBrightness); // mouseReleased callback function
 
-    temper = createSlider(153, 500, 250) // a slider to dim one light
+    temper = createSlider(153, 454, 250) // a slider to dim one light
     temper.position(10, 40); // position it
     temper.mouseReleased(changeTemperature); // mouseReleased callback function
 
@@ -130,11 +135,11 @@ function receiveOsc(address, value) {
         lys = value[0];
         varme = value[1];
     }
-    lys = parseInt(map(lys, 0, 500, 1, 254));
-    varme = parseInt(map(varme, 0, 500, 153, 500));
+    lys = parseInt(map(lys, 0, 1, 1, 254));
+    varme = parseInt(map(varme, 0, 1, 153, 500));
     oscDiv.html("OSC Lys: " + lys + " Varme: " + varme + "<hr/>");
     
-    if(frameCount%30==0){
+    if(frameCount%5==0){
         oscChangeBrightness(lys);
         oscChangeTemperature(varme);
     }
