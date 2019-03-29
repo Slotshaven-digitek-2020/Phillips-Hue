@@ -11,7 +11,7 @@ var lys = 0;
 var varme = 0;
 
 // Bridge ip-adresse. Find den fx i hue app'en
-var url = '10.0.248.127';
+var url = 'ip_to_hue_bridge';
 // Hent dit brugernavn - find det ved at følge installationsguiden her: 
 // https://developers.meethue.com/develop/get-started-2/#
 
